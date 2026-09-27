@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Culture Connect | Explore. Experience. Connect.</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#07111f;
+    color:#f5f1e8;
+    line-height:1.6;
+}
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(7,17,31,.95);
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#e7b76b;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#e7b76b;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 70px;
+    background:
+    radial-gradient(circle at 20% 20%,rgba(231,183,107,.16),transparent 30%),
+    radial-gradient(circle at 80% 70%,rgba(72,142,190,.15),transparent 30%);
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.small-title{
+    color:#e7b76b;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:clamp(45px,8vw,90px);
+    letter-spacing:5px;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:#e7b76b;
+}
+
+.hero p{
+    max-width:650px;
+    margin:0 auto 30px;
+    color:#c7ced8;
+    font-size:18px;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 25px;
+    border-radius:30px;
+    background:#e7b76b;
+    color:#07111f;
+    text-decoration:none;
+    font-weight:bold;
+    margin:5px;
+    border:none;
+    cursor:pointer;
+}
+
+.btn.secondary{
+    background:transparent;
+    color:white;
+    border:1px solid rgba(255,255,255,.3);
+}
+
+section{
+    padding:90px 20px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#aeb8c5;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.card{
+    background:#0d1b2d;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:25px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:#e7b76b;
+}
+
+.icon{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#aeb8c5;
+    font-size:14px;
+}
+
+.states{
+    background:#0a1626;
+}
+
+.state-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.state{
+    padding:30px;
+    min-height:180px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#10243b,#0b1728);
+    border:1px solid rgba(255,255,255,.08);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.state:hover{
+    transform:scale(1.02);
+    border-color:#e7b76b;
+}
+
+.state h3{
+    color:#e7b76b;
+    font-size:24px;
+}
+
+.state p{
+    color:#b9c2ce;
+    margin-top:8px;
+}
+
+.search-box{
+    width:100%;
+    max-width:600px;
+    display:block;
+    margin:0 auto 30px;
+    padding:15px 20px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.2);
+    background:#101f33;
+    color:white;
+    outline:none;
+}
+
+.ai-box{
+    background:linear-gradient(135deg,#10253b,#17283a);
+    border:1px solid rgba(231,183,107,.25);
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+}
+
+.ai-box h2{
+    margin-bottom:10px;
+}
+
+.ai-box p{
+    color:#b9c2ce;
+    max-width:700px;
+    margin:0 auto 25px;
+}
+
+.feedback{
+    max-width:650px;
+    margin:auto;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.15);
+    background:#0d1b2d;
+    color:white;
+    outline:none;
+}
+
+textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+footer{
+    padding:40px 20px;
+    text-align:center;
+    background:#050d17;
+    color:#7f8a98;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:2000;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    max-width:500px;
+    width:100%;
+    background:#0d1b2d;
+    border:1px solid rgba(231,183,107,.3);
+    border-radius:20px;
+    padding:30px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.modal-box h2{
+    color:#e7b76b;
+    margin-bottom:15px;
+}
+
+.modal-box p{
+    color:#bdc6d1;
+}
+
+@media(max-width:900px){
+    .features{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .state-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    nav a{
+        margin-left:10px;
+    }
+}
+
+@media(max-width:600px){
+    nav{
+        padding:15px;
+    }
+
+    nav .links{
+        display:none;
+    }
+
+    .features,
+    .state-grid{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:70px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<div class="logo">CULTURE <span>CONNECT</span></div>
+
+<div class="links">
+<a href="#home">Home</a>
+<a href="#features">Features</a>
+<a href="#explore">Explore</a>
+<a href="#ai">AI Guide</a>
+<a href="#feedback">Feedback</a>
+</div>
+</nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+<div class="hero-content">
+
+<div class="small-title">DISCOVER • LEARN • CONNECT</div>
+
+<h1>Culture <span>Connect</span></h1>
+
+<p>
+Explore India's diverse cultures, traditions, food, languages and
+destinations — all in one intelligent travel companion.
+</p>
+
+<a href="#explore" class="btn">Explore Cultures</a>
+
+<a href="#features" class="btn secondary">Discover Features</a>
+
+</div>
+</section>
+
+
+<!-- FEATURES -->
+
+<section id="features">
+<div class="container">
+
+<div class="section-title">
+<h2>Everything You Need</h2>
+<p>One platform to explore places and understand the cultures behind them.</p>
+</div>
+
+<div class="features">
+
+<div class="card">
+<div class="icon">🗺️</div>
+<h3>Smart Itinerary</h3>
+<p>Create personalized travel plans based on your destination, interests and available time.</p>
+</div>
+
+<div class="card">
+<div class="icon">✈️</div>
+<h3>Travelling</h3>
+<p>Discover destinations, attractions and experiences that make every journey meaningful.</p>
+</div>
+
+<div class="card">
+<div class="icon">🍛</div>
+<h3>Food Explorer</h3>
+<p>Discover traditional dishes, local cuisines and food experiences from different regions.</p>
+</div>
+
+<div class="card">
+<div class="icon">📱</div>
+<h3>Scan & Learn</h3>
+<p>Scan cultural objects and landmarks to instantly learn their history and significance.</p>
+</div>
+
+<div class="card">
+<div class="icon">🤝</div>
+<h3>Culture Etiquette Coach</h3>
+<p>Learn local customs, traditions and respectful behaviour before visiting a new place.</p>
+</div>
+
+<div class="card">
+<div class="icon">🗣️</div>
+<h3>Learn State Language</h3>
+<p>Learn useful local words and phrases to communicate better with local communities.</p>
+</div>
+
+<div class="card">
+<div class="icon">🏪</div>
+<h3>Local Vendors</h3>
+<p>Discover local artisans, shops and small businesses while supporting local communities.</p>
+</div>
+
+<div class="card">
+<div class="icon">💬</div>
+<h3>Feedbacks</h3>
+<p>Share experiences and help improve cultural discovery for future travellers.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- AI -->
+
+<section id="ai">
+<div class="container">
+
+<div class="ai-box">
+
+<div class="small-title">AI POWERED</div>
+
+<h2>Personalized Cultural Guide</h2>
+
+<p>
+Our AI-powered personalization engine understands your interests
+and helps recommend destinations, experiences, food and cultural
+activities suited to you.
+</p>
+
+<button class="btn" onclick="openModal('aiModal')">
+Try AI Guide
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- EXPLORE STATES -->
+
+<section class="states" id="explore">
+<div class="container">
+
+<div class="section-title">
+<h2>Explore India</h2>
+<p>Choose a state and discover what makes it unique.</p>
+</div>
+
+<input
+class="search-box"
+id="search"
+type="text"
+placeholder="Search a state..."
+onkeyup="searchStates()"
+>
+
+<div class="state-grid" id="stateGrid">
+
+<div class="state" data-name="Maharashtra"
+onclick="showState('Maharashtra')">
+<h3>Maharashtra</h3>
+<p>Forts • Ganeshotsav • Lavani • Misal Pav</p>
+</div>
+
+<div class="state" data-name="Rajasthan"
+onclick="showState('Rajasthan')">
+<h3>Rajasthan</h3>
+<p>Forts • Folk Music • Royal Heritage • Dal Baati</p>
+</div>
+
+<div class="state" data-name="Kerala"
+onclick="showState('Kerala')">
+<h3>Kerala</h3>
+<p>Backwaters • Kathakali • Onam • Sadya</p>
+</div>
+
+<div class="state" data-name="Punjab"
+onclick="showState('Punjab')">
+<h3>Punjab</h3>
+<p>Bhangra • Golden Temple • Lohri • Sarson da Saag</p>
+</div>
+
+<div class="state" data-name="Assam"
+onclick="showState('Assam')">
+<h3>Assam</h3>
+<p>Bihu • Tea Gardens • Satriya • Traditional Crafts</p>
+</div>
+
+<div class="state" data-name="Gujarat"
+onclick="showState('Gujarat')">
+<h3>Gujarat</h3>
+<p>Garba • Rann of Kutch • Handicrafts • Dhokla</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- ITINERARY -->
+
+<section>
+<div class="container">
+
+<div class="section-title">
+<h2>Plan Your Journey</h2>
+<p>Generate a simple cultural itinerary.</p>
+</div>
+
+<div class="ai-box">
+
+<select id="destination">
+<option value="Maharashtra">Maharashtra</option>
+<option value="Rajasthan">Rajasthan</option>
+<option value="Kerala">Kerala</option>
+<option value="Punjab">Punjab</option>
+<option value="Assam">Assam</option>
+<option value="Gujarat">Gujarat</option>
+</select>
+
+<select id="days">
+<option value="1">1 Day</option>
+<option value="2">2 Days</option>
+<option value="3">3 Days</option>
+</select>
+
+<button class="btn" onclick="generateItinerary()">
+Generate Itinerary
+</button>
+
+<div id="itineraryResult" style="margin-top:25px;"></div>
+
+</div>
+</div>
+</section>
+
+
+<!-- FEEDBACK -->
+
+<section id="feedback">
+<div class="container">
+
+<div class="section-title">
+<h2>Share Your Experience</h2>
+<p>Your feedback helps make Culture Connect better.</p>
+</div>
+
+<div class="feedback">
+
+<input type="text" id="name" placeholder="Your name">
+
+<input type="email" id="email" placeholder="Your email">
+
+<textarea id="message" placeholder="Write your feedback..."></textarea>
+
+<button class="btn" onclick="submitFeedback()">
+Submit Feedback
+</button>
+
+</div>
+</div>
+</section>
+
+
+<footer>
+<p>© 2026 Culture Connect</p>
+<p>Explore. Experience. Connect.</p>
+</footer>
+
+
+<!-- AI MODAL -->
+
+<div class="modal" id="aiModal">
+
+<div class="modal-box">
+
+<div class="close" onclick="closeModal('aiModal')">×</div>
+
+<h2>AI Cultural Guide 🤖</h2>
+
+<p>
+Tell us what you enjoy and Culture Connect can personalize
+your travel and cultural discovery experience.
+</p>
+
+<br>
+
+<select>
+<option>Heritage & History</option>
+<option>Food & Cuisine</option>
+<option>Nature & Adventure</option>
+<option>Art & Festivals</option>
+<option>Local Lifestyle</option>
+</select>
+
+<button class="btn" onclick="alert('Your personalized recommendations are being prepared!')">
+Get Recommendations
+</button>
+
+</div>
+</div>
+
+
+<!-- STATE MODAL -->
+
+<div class="modal" id="stateModal">
+
+<div class="modal-box">
+
+<div class="close" onclick="closeModal('stateModal')">×</div>
+
+<h2 id="stateTitle"></h2>
+
+<p id="stateText"></p>
+
+<br>
+
+<button class="btn" onclick="closeModal('stateModal')">
+Start Exploring
+</button>
+
+</div>
+</div>
+
+
+<script>
+
+function openModal(id){
+    document.getElementById(id).style.display="flex";
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display="none";
+}
+
+
+function showState(state){
+
+    const information={
+
+        "Maharashtra":
+        "Explore historic forts, vibrant Ganeshotsav celebrations, Lavani traditions and famous Maharashtrian cuisine.",
+
+        "Rajasthan":
+        "Discover royal forts, colourful folk traditions, traditional crafts, music and famous Rajasthani cuisine.",
+
+        "Kerala":
+        "Experience peaceful backwaters, Kathakali, Onam celebrations, traditional Sadya and Kerala's rich heritage.",
+
+        "Punjab":
+        "Discover Bhangra, Punjabi cuisine, vibrant festivals and the cultural heritage of Punjab.",
+
+        "Assam":
+        "Explore Bihu, tea gardens, Satriya traditions and the rich cultural heritage of Assam.",
+
+        "Gujarat":
+        "Experience Garba, the Rann of Kutch, traditional crafts and delicious Gujarati cuisine."
+
+    };
+
+    document.getElementById("stateTitle").innerText=state;
+
+    document.getElementById("stateText").innerText=information[state];
+
+    openModal("stateModal");
+}
+
+
+function searchStates(){
+
+    let input=document.getElementById("search").value.toLowerCase();
+
+    let states=document.querySelectorAll(".state");
+
+    states.forEach(function(state){
+
+        let name=state.getAttribute("data-name").toLowerCase();
+
+        if(name.includes(input)){
+            state.style.display="block";
+        }else{
+            state.style.display="none";
+        }
+
+    });
+}
+
+
+function generateItinerary(){
+
+    let destination=document.getElementById("destination").value;
+
+    let days=document.getElementById("days").value;
+
+    let result=document.getElementById("itineraryResult");
+
+    result.innerHTML=
+    "<h3>"+days+" Day "+destination+" Cultural Journey</h3>"+
+    "<p>🌅 Day 1 — Explore heritage sites and important landmarks</p>"+
+    "<p>🍛 Experience local food and traditional cuisine</p>"+
+    "<p>🎭 Discover local art, festivals and cultural traditions</p>"+
+    "<p>🛍️ Visit local vendors and support local communities</p>"+
+    "<p>🗣️ Learn useful local words and cultural etiquette</p>";
+
+}
+
+
+function submitFeedback(){
+
+    let name=document.getElementById("name").value;
+
+    let message=document.getElementById("message").value;
+
+    if(name==="" || message===""){
+
+        alert("Please enter your name and feedback.");
+
+        return;
+
+    }
+
+    alert("Thank you "+name+"! Your feedback has been submitted.");
+
+    document.getElementById("name").value="";
+    document.getElementById("email").value="";
+    document.getElementById("message").value="";
+
+}
+
+
+window.onclick=function(event){
+
+    if(event.target.classList.contains("modal")){
+
+        event.target.style.display="none";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
